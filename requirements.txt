@@ -1,4 +1,6 @@
 Flask
+gunicorn
 pymongo
-dnspython
 python-dotenv
+requests
+dnspython
