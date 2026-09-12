@@ -14,11 +14,13 @@ def home():
     
     return render_template('index.html')
 
-@app.route('/submit', methods=['POST'])  
+@app.route('/submit', methods=['POST'])
 def submit():
-    form_data = dict(request.form) 
+    formdata = request.get_json()
 
-    requests.post(BACKEND_URL +'/submit', json=form_data)
+    collection.insert_one(formdata)
+
+    return 'success'
 
     
 
