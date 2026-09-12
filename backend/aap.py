@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask,request
+from flask import Flask,request,jsonify
 import pymongo
 
 load_dotenv()
@@ -14,20 +14,17 @@ collection = db['new_project']
 
 app = Flask(__name__)  # Renamed to app for consistency
 
-@app.route('/submit', methods=['POST'])  # Fixed: methods (plural) and POST
+@app.route('/submit', methods=['POST'])
 def submit():
 
-    formdata = dict(request.json) 
+    formdata = request.get_json()
 
-    collection.insert_one (formdata)
+    if not formdata:
+        return {"error": "No data received"}, 400
 
-    name = request.form['name']
-    email = request.form['email']
-    phone = request.form['phone']
+    collection.insert_one(formdata)
 
-    collection.insert_one({'name': name, 'email': email, 'phone': phone})
-
-    return ('success.html')
+    return {"message": "Data saved successfully"}, 200
     
 ## THIS IS ONLLY  for A TEST 
 @app.route('/view')
@@ -45,7 +42,7 @@ def view():
 
     print(data)
 
-    return data 
+    return jsonify(data)
 
 
 
