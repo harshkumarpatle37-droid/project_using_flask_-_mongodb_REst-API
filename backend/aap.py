@@ -7,7 +7,11 @@ load_dotenv()
 
 MONGO_URL = os.getenv("MONGO_URI")
 
-client = pymongo.MongoClient(MONGO_URL)
+client = pymongo.MongoClient(
+    MONGO_URL,
+    serverSelectionTimeoutMS=5000,
+    connectTimeoutMS=5000
+)
 
 db = client.test
 collection = db["new_project"]
