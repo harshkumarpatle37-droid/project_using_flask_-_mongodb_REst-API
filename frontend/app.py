@@ -1,47 +1,55 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request
 import requests
+
 load_dotenv()
 
-BACKEND_URL ='http://127.0.0.1:9000'
+# Render backend URL
+BACKEND_URL = "https://project-using-flask-mongodb-rest-api-1.onrender.com"
 
-app = Flask(__name__)  # Renamed to app for consistency
+app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def home():
-    
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route('/submit', methods=['POST'])
+
+@app.route("/submit", methods=["POST"])
 def submit():
-    formdata = request.get_json()
 
-<<<<<<< HEAD
-    requests.post(BACKEND_URL + '/submit', json=form_data)
-=======
-    collection.insert_one(formdata)
+    # Get form data from frontend
+    formdata = dict(request.form)
 
-    return 'success'
->>>>>>> ffe542042c6d3110e14816da2c09fe855fedcb5a
+    # Send data to Render backend
+    response = requests.post(
+        BACKEND_URL + "/submit",
+        json=formdata
+    )
 
-    
+    if response.status_code == 200:
+        return "Data received successfully"
 
-    return ('data received successful')
+    return "Error while saving data", 500
 
-@app.route('/view_data')
+
+@app.route("/view_data")
 def view_data():
-    response = requests.get(BACKEND_URL +'/view')
 
-    data= response.json()
+    # Get data from Render backend
+    response = requests.get(BACKEND_URL + "/view")
 
-    data ['hello']= 'world'
+    if response.status_code == 200:
+        data = response.json()
+        return data
 
-    return data
-  
+    return {"error": "Could not fetch data"}, 500
 
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=8000,debug=True)
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=8000,
+        debug=True
+    )
