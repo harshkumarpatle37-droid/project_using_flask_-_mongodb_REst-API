@@ -1,5 +1,6 @@
 
-direct link https://project-using-flask-mongodb-r-est-a.vercel.app/
+direct link for frantend  https://project-using-flask-mongodb-r-est-a.vercel.app/
+direct limk of back end :- https://project-using-flask-mongodb-r-est-a.vercel.app/view_data
 
 <<<<<<< HEAD
 # project_using_flask_-_mongodb_REst-API
