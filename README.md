@@ -98,6 +98,6 @@ If you have run out of energy or time for your project, put a note at the top of
 >>>>>>> f4b0c931a3ea7db281e473bcdb990f8bc58998e2
 
 ## Project Deploy Link
->> Direct link for Frantend  https://project-using-flask-mongodb-r-est-a.vercel.app/
+>> Direct link of Frantend  https://project-using-flask-mongodb-r-est-a.vercel.app/
 
 >> Direct link of Back end :- https://project-using-flask-mongodb-r-est-a.vercel.app/view_data
