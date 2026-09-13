@@ -3,4 +3,8 @@ gunicorn
 pymongo
 python-dotenv
 requests
+<<<<<<< HEAD
 dnspython
+=======
+dnspython
+>>>>>>> ffe542042c6d3110e14816da2c09fe855fedcb5a
